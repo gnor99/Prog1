@@ -1,58 +1,70 @@
-#include "Graph.h"
-#include "Window.h"
-#include "GUI.h"
 #include "Simple_window.h"
+#include "Graph.h"
 
+int main()
+{
+	Point tl {100,100};
+	Simple_window win {tl, 600, 400, "Canvas"};
 
-using namespace Graph_lib;
+	//Function sine {sin,0,100,Point{20,150},1000,50,50};
+	//sine.set_color(Color::blue);
 
-
-int main(){
+	/*Polygon poly;
+	poly.add(Point{500,213});
+	poly.add(Point{400,150});
+	poly.add(Point{600,300});
+	poly.set_color(Color::red);
+	poly.set_style(Line_style::dash);*/
 	
-	Point starting_point {100, 100};
-	Simple_window my_window {starting_point, 600, 400, "My window"};
-
-	int origo_x = 600/2;
-	int origo_y = 400/2;
-
-	Axis  ax {Axis::x, {0, origo_y}, 600, 10, "x axis"};
-	Axis  ay {Axis::y, {origo_x, 400}, 400, 10, "y axis"};
-
-	Function szinusz (sin, 0, 10, Point(origo_x, origo_y), 1000, 20, 20);
-	szinusz.set_color(Color::green);
-
-	Polygon my_poly;
-	my_poly.add (Point{100, 150});
-	my_poly.add (Point{50, 250});
-	my_poly.add (Point{80, 50});
-	my_poly.set_style(Line_style::dash);
-	my_poly.set_color(Color::blue);
-
-	Rectangle my_rectangle {Point{350,250}, 100, 50};
-	my_rectangle.set_fill_color(Color::red);
-
-	Text my_text {Point{400, 200}, "asdasd"};
-	my_text.set_font_size(50);
-	my_text.set_font(Font::courier);
-
-	Image my_image {Point{100, 100}, "badge.jpg"};
-
-	Circle my_cirlce {Point{50,100}, 50};
-	my_cirlce.set_color(Color::yellow);
-	Mark my_mark {Point{200,100}, 'X'};
-
-
-	my_window.attach(my_image);
-	my_window.attach(ax);
-	my_window.attach(ay);
-	my_window.attach(my_text);
-	my_window.attach(my_rectangle);
-	my_window.attach(szinusz);
-	my_window.attach(my_poly);
-	my_window.attach(my_cirlce);
-	my_window.attach(my_mark);
+	Axis xa (Axis::x, Point{0,200}, 600, 10, "x axis");
+	Axis ya (Axis::y, Point{300,400}, 400, 10, "y axis");
 	
-	
-	my_window.wait_for_button();
+	win.attach(xa);
+	win.attach(ya);
+	//win.attach(sine);
+	//win.attach(poly);
 
+	Circle c { Point{100,200},50};
+	Ellipse e {Point{100,200},75,25};
+	Mark m{Point {100,200}, 'x'};
+
+	ostringstream oss;
+	oss<<"screen size:" <<x_max()<<"*"<<y_max() <<"; window size:"<<win.x_max()<<"*"<<win.y_max();
+	Text sizes {Point{100,20},oss.str()};
+
+	win.attach(c);
+	win.attach(e);
+	win.attach(m);
+	win.attach(sizes);
+	
+	//ya.set_color(Color::cyan);
+	//ya.label.set_color(Color::dark_yellow);
+	//Rectangle r {Point{200,200}, 100, 50};
+
+	/*Text t{Point{225,20}, "Hello, graphical world!"};
+	t.set_font(Font::times_bold);
+	t.set_font_size(20);*/
+
+	//Image ii {Point(100,50), "badge.jpg"};
+
+	/*Closed_polyline poly_rect;
+	poly_rect.add(Point{100,50});
+	poly_rect.add(Point{200,50});
+	poly_rect.add(Point{200,100});
+	poly_rect.add(Point{100,100});
+	poly_rect.add (Point{50,75});/*
+
+	/*r.set_fill_color(Color::yellow);
+	r.set_style (Line_style(Line_style::dash,4));
+	poly.set_style (Line_style(Line_style::dash,4));
+	poly_rect.set_style(Line_style(Line_style::dash,2));
+	poly_rect.set_fill_color(Color::green);*/
+
+	//win.attach(r);
+	//win.attach(poly_rect);
+	//win.attach(t);
+	//win.attach(ii);
+
+	win.set_label("Canvas");
+	win.wait_for_button();
 }
