@@ -54,24 +54,25 @@ int main()
     f.open("input.txt");
     Item temp;
     string val;
-    while(!f.eof())
+    while(true)
     {
         getline(f, temp.name, ';');
         getline (f, val, ';');
         temp.iid = stoi(val);
         getline(f, val);
         temp.value = stod(val);
+        if (f.eof()) break;
         li.push_back(temp);
     }
     
     cout<<"Original:"<<endl;
     print(li);
 
-    cout<<"\nBy name:"<<endl;
+    cout<<"By name:"<<endl;
     li.sort(by_name);
     print(li);
 
-    cout<<"\nBy iid:"<<endl;
+    cout<<"By iid:"<<endl;
     li.sort(by_iid);
     print(li);
 

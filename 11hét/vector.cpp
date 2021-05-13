@@ -111,7 +111,7 @@ cout<<endl;
 vi.erase(find_if(vi.begin(), vi.end(), find_by_name("al")));
 vi.erase(find_if(vi.begin(), vi.end(), find_by_name("alm")));
 
-cout<<"after erase by name:"<<endl;
+cout<<"after erase by name:al and alm"<<endl;
 for (auto i :vi)
 	cout<<i.name<<' '<<i.iid<<' '<<i.value<<' '<<endl;
 cout<<endl;
@@ -120,7 +120,7 @@ cout<<endl;
 vi.erase(find_if(vi.begin(), vi.end(), find_by_iid(5)));
 vi.erase(find_if(vi.begin(), vi.end(), find_by_iid(7)));
 
-cout<<"after erase by iid:"<<endl;
+cout<<"after erase by iid: 5 and 7"<<endl;
 for (auto i :vi)
 	cout<<i.name<<' '<<i.iid<<' '<<i.value<<' '<<endl;
 cout<<endl;
